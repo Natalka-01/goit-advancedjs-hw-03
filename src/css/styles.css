@@ -1,18 +1,107 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-/* Common styles */
-@import url('./reset.css');
-@import url('./base.css');
-@import url('./container.css');
-@import url('./animations.css');
+/* --- General Reset and Setup --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
 
-/* Sections style */
-@import url('./header.css');
-@import url('./vite-promo.css');
-@import url('./badges.css');
-@import url('./back-link.css');
-@import url('./footer.css');
+body {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+/* Centers and constrains the main content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Search Form Layout --- */
+.search-form {
+    display: flex; /* Aligns input and button side-by-side */
+    gap: 10px;
+    width: 100%;
+    max-width: 600px; 
+    margin: 40px auto; /* Centers the form horizontally */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Input Field States (.search-input) --- */
+
+.search-input {
+    /* Normal State (Base Style) */
+    flex-grow: 1; 
+    padding: 12px 15px;
+    border: 1px solid #ccc; /* Normal state border */
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none; 
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Hover State */
+/* Styles the input when the mouse is over it. */
+.search-input:hover {
+    border-color: #999; 
+}
+
+/* Pressed/Focus State */
+/* Styles the input when it is actively clicked or being typed into, creating the blue glow effect. */
+.search-input:focus {
+    border-color: #4a89ff; /* Solid blue border */
+    box-shadow: 0 0 0 3px rgba(74, 137, 255, 0.4); /* Blue glow */
+}
+
+/* --- Button States (.search-btn) --- */
+
+.search-btn {
+    /* Normal State (Base Style) */
+    background-color: #5d8aff; /* The normal blue color */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.15s, transform 0.15s;
+    user-select: none;
+}
+
+/* Hover State */
+/* Styles the button when the mouse is over it. */
+.search-btn:hover {
+    background-color: #729cf7; /* Slightly lighter blue */
+}
+
+/* Pressed/Active State */
+/* Styles the button when it is actively being clicked (held down). */
+.search-btn:active {
+    background-color: #4a75e0; /* Darker blue */
+    transform: translateY(1px); /* Slight 'press' effect */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+}
+
+/* --- Gallery Area Styles --- */
+.gallery {
+    list-style: none; 
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.gallery-placeholder {
+    width: 100%;
+    text-align: center;
+    color: #888;
+    padding: 40px;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+}
