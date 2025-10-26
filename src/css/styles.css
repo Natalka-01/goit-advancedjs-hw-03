@@ -20,7 +20,7 @@ body {
 }
 
 /* --- Search Form Layout --- */
-.search-form {
+.form {
     display: flex; /* Aligns input and button side-by-side */
     gap: 10px;
     width: 100%;
