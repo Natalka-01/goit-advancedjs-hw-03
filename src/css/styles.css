@@ -127,12 +127,25 @@ body {
      * Divide the result by 3.
      */
     width: calc((100% - 40px) / 3); 
+    cursor: pointer;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
     
     /* Image and Stat Container Styles */
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+}
+
+.gallery-card:hover {
+    /* Enhanced Hover State */
+    transform: scale(1.02); /* Slight scale-up effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-card:active {
+    transform: scale(0.98); /* Slight press-down effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* * IMAGE STYLING 

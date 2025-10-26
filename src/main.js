@@ -4,13 +4,36 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 // import { createGalleryCardTemplate } from '.js/render-functions';
 
+// Описаний у документації
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
+
+let lightboxInstance = null;
+
+// 🔑 ФУНКЦІЯ ІНІЦІАЛІЗАЦІЇ/ОНОВЛЕННЯ LIGHTBOX
+const initLightbox = () => {
+    // Якщо екземпляр ще не створено, створюємо його вперше
+    if (!lightboxInstance) {
+        lightboxInstance = new SimpleLightbox('.js-gallery a', {
+            // Використовуємо .js-gallery a, щоб таргетувати всі посилання 
+            // всередині контейнера галереї
+            captionDelay: 250,
+            captionsData: 'alt',
+        });
+    } else {
+        // Якщо екземпляр вже існує, оновлюємо його (метод refresh())
+        lightboxInstance.refresh();
+    }
+}
+
 const createGalleryCardTemplate = imgInfo => {
   
 
   return `
 
     <li class="gallery-card">
-    <img class="gallery-img" src="${imgInfo.webformatURL}" alt="${imgInfo.tags}" data-large-img = "${imgInfo.largeImageURL}"/>
+    <a class = "js-gallery-link" href = "${imgInfo.largeImageURL}"> <img class="gallery-img" src="${imgInfo.webformatURL}" alt="${imgInfo.tags}"/></a>
     <div class="stats-container">
         <ul class="stats-list">
             <li class="gallery-item">
@@ -62,6 +85,7 @@ const onSearchFormSubmit = event => {
     }
 
     console.log(searchedQuery)
+    refs.gallery.innerHTML = '';
 
     fetch(
         `https://pixabay.com/api/?key=52947144-373b760a7dc07b63f24b6c37a&q=${searchedQuery}&image_type=photo&orientation=horizontal&safesearch=true`
@@ -86,6 +110,8 @@ const onSearchFormSubmit = event => {
 
         const galleryCardTemplate = data.hits.map(pictureInfo => createGalleryCardTemplate(pictureInfo)).join('')
         refs.gallery.innerHTML = galleryCardTemplate
+        initLightbox();
+
     })
     .catch(err => {
         console.log(err);
@@ -93,6 +119,7 @@ const onSearchFormSubmit = event => {
 }
 
 refs.searchForm.addEventListener('submit', onSearchFormSubmit)
+
 
 
 //TODO_2 HTTP-запити
