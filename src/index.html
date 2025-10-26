@@ -7,28 +7,25 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
-
     <main>
-    <section class="gallery-section">
+      <section class="gallery-section">
         <div class="container">
-            <form class="search-form js-search-form">
-                <input class="search-input js-search-input" 
-                       type="text" 
-                       name="user_query" 
-                       required 
-                       placeholder="Search images..."
-                />
-                <button class="search-btn" type="submit">Search</button>
-            </form>
-            
-            <ul class="gallery js-gallery">
-            </ul>
-            <span class="loader js-loader"></span>
+          <form class="search-form js-search-form">
+            <input
+              class="search-input js-search-input"
+              type="text"
+              name="user_query"
+              required
+              placeholder="Search images..."
+            />
+            <button class="search-btn" type="submit">Search</button>
+          </form>
+
+          <ul class="gallery js-gallery"></ul>
+          <span class="loader js-loader"></span>
         </div>
-    </section>
-
+      </section>
     </main>
-
 
     <script type="module" src="./main.js"></script>
   </body>
