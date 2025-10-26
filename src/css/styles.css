@@ -1,3 +1,4 @@
+
 /* --- General Reset and Setup --- */
 * {
     box-sizing: border-box;
@@ -88,14 +89,7 @@ body {
 }
 
 /* --- Gallery Area Styles --- */
-.gallery {
-    list-style: none; 
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 20px;
-    margin-top: 20px;
-    padding: 0;
-}
+
 
 .gallery-placeholder {
     width: 100%;
@@ -104,4 +98,102 @@ body {
     padding: 40px;
     border: 1px dashed #ccc;
     border-radius: 4px;
+}
+
+/*
+ * GALLERY CONTAINER (The UL)
+ * --- Enables wrapping for multiple rows of cards ---
+ */
+.gallery {
+    list-style: none; 
+    padding: 0;
+    margin-top: 20px;
+    
+    /* 🔑 KEY: Flexbox setup for wrapping */
+    display: flex;
+    flex-wrap: wrap; 
+    
+    /* The space between items */
+    gap: 20px; 
+}
+
+/*
+ * INDIVIDUAL GALLERY CARD (The LI)
+ * --- Calculation ensures exactly 3 items fit in a row ---
+ */
+.gallery-card {
+    /* 🔑 KEY: The calc() magic for 3 columns!
+     * 100% total width - (2 * 20px gap) = total width available for 3 cards.
+     * Divide the result by 3.
+     */
+    width: calc((100% - 40px) / 3); 
+    
+    /* Image and Stat Container Styles */
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* * IMAGE STYLING 
+ * --- Necessary to control card height for alignment ---
+ */
+.gallery-img {
+    width: 100%;
+    height: 200px; /* Fixed height is crucial for visual consistency */
+    object-fit: cover;
+    display: block;
+}
+
+
+/*
+ * STATISTICS SECTION (The Wrapper DIV)
+ * =====================================
+ */
+.stats-container {
+    padding: 8px 10px;
+    /* Adds the thin line separating the image/stats */
+    border-top: 1px solid #eee; 
+}
+
+/* * The inner <ul> element containing the 4 stats 
+ * --- Aligns the 4 stats horizontally ---
+ */
+.stats-list { 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    /* 🔑 KEY: Flexbox for horizontal alignment */
+    display: flex; 
+    /* Spreads the 4 stats across the full width of the container */
+    justify-content: space-between; 
+}
+
+/* * Each individual statistic item (the inner <li>) 
+ * --- Stacks the Value and Label vertically ---
+ */
+.gallery-item {
+    /* Flexbox to handle the vertical stacking */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0 5px; 
+}
+
+/* The number (e.g., 900290) */
+.gallery-item .value {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+    order: 1; /* Puts the number on top */
+}
+
+/* The label (e.g., Views) */
+.gallery-item .label {
+    font-size: 0.75em;
+    color: #777;
+    order: 2; /* Puts the label on the bottom */
+    text-transform: uppercase;
 }
